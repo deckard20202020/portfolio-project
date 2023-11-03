@@ -18,7 +18,7 @@ const LandingSection = () => (
       <Avatar
         size="2xl" 
         name="Pete"
-        src="https://i.pravatar.cc/150?img=7" // Replace with path to your avatar image
+        src="https://i.pravatar.cc/150?img=7"
       />
       <Heading as="h1" size="xl" color="white">
         {greeting}
