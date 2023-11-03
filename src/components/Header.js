@@ -4,15 +4,15 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
-  faMedium,
-  faStackOverflow,
+  // faMedium,
+  // faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, IconButton, Link } from "@chakra-ui/react";
 
 const socials = [
   {
     icon: faEnvelope,
-    url: "mailto: hello@example.com",
+    url: "mailto: mattdsinnwell@gmail.com",
   },
   {
     icon: faGithub,
@@ -22,27 +22,39 @@ const socials = [
     icon: faLinkedin,
     url: "https://www.linkedin.com",
   },
-  {
-    icon: faMedium,
-    url: "https://medium.com",
-  },
-  {
-    icon: faStackOverflow,
-    url: "https://stackoverflow.com",
-  },
+  // {
+  //   icon: faMedium,
+  //   url: "https://medium.com",
+  // },
+  // {
+  //   icon: faStackOverflow,
+  //   url: "https://stackoverflow.com",
+  // },
 ];
 
 const Header = () => {
+  // const handleClick = (anchor) => () => {
+  //   const id = `${anchor}-section`;
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     element.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   }
+  // };
+
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({
-        behavior: "smooth",
+        behavior: "smooth", // this should enable smooth scrolling
         block: "start",
       });
     }
   };
+  
 
   return (
     <Box
@@ -63,12 +75,31 @@ const Header = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <nav>
+          <HStack as="nav" spacing={4}>
             {/* Add social media links based on the `socials` data */}
-          </nav>
+            {socials.map((social, index) => (
+              <Link key={index} href={social.url} isExternal>
+                <IconButton
+                  icon={<FontAwesomeIcon icon={social.icon} />}
+                  size="lg"
+                  isRound={true}
+                  aria-label={`Link to ${social.url}`}
+                  background="transparent"
+                  _hover={{ background: "whiteAlpha.300" }}
+                />
+              </Link>
+            ))}
+          </HStack>
+
           <nav>
             <HStack spacing={8}>
               {/* Add links to Projects and Contact me section */}
+              <a href="#projects-section" onClick={handleClick('projects')} style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>
+                Projects
+              </a>
+              <a href="#contactme-section" onClick={handleClick('contactme')} style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>
+                Contact Me
+              </a>
             </HStack>
           </nav>
         </HStack>
